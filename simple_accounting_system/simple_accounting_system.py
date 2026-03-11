@@ -1,8 +1,8 @@
 from datetime import datetime
 
-available_operations = ["saldo", "sprzedaż", "zakup", "konto", "lista",
-                        "magazyn", "przegląd",
-                        "koniec"]
+AVAILABLE_OPERATIONS = ["balance", "sell", "buy", "account", "list",
+                        "inventory", "review",
+                        "end"]
 warehouse = [
     {"name": "Piłka nożna", "qty": 12, "price": 79.99},
     {"name": "Piłka koszykowa", "qty": 8, "price": 89.99},
@@ -18,27 +18,26 @@ warehouse = [
 transaction_history = []
 account = 8000
 account_before_operation = account
-
-print("Wszystkie dostępne komendy:")
-for each_operation in available_operations:
-    print(f"- {each_operation}")
-
 program_is_working = True
 
 while program_is_working:
+    print("Wszystkie dostępne komendy:")
+    for each_operation in AVAILABLE_OPERATIONS:
+        print(f"- {each_operation}")
+
     operation = input("Proszę wprowadzić komendę: ").lower().strip()
 
-    while operation not in available_operations:
+    while operation not in AVAILABLE_OPERATIONS:
         operation = input(
             "Niepoprawna komenda. Spróbuj ponownie: ").lower().strip()
 
     match operation:
-    # SALDO
-        case "saldo":
+        # SALDO
+        case "balance":
             while True:
                 amount_input = input("Podaj kwotę: ").strip()
 
-                if not amount_input or not amount_input.isdigit():
+                if not amount_input.isdigit() or int(amount_input) <= 0:
                     print(
                         f"Wprowadź poprawną wartość liczbową (liczba całkowita > 0)")
                     continue
@@ -66,9 +65,9 @@ while program_is_working:
             transaction_history.append(action)
             account_before_operation = account
 
-    # ZAKUP
+        # ZAKUP
 
-        case "zakup":
+        case "buy":
             while True:
                 article_to_buy = input(
                     "Podaj nazwę produktu: ").strip().capitalize()
@@ -128,31 +127,49 @@ while program_is_working:
                 transaction_history.append(action)
                 account_before_operation = account
 
-    # SPRZEDAŻ
+        # SPRZEDAŻ
 
-        case "sprzedaż":
+        case "sell":
             item_to_buy = input(
                 "Podaj nazwę produktu, który chcesz kupić: ").lower().strip().capitalize()
-            quantity_to_buy = 0
 
             for item in warehouse:
-                if item["name"] == item_to_buy:
+                if item['name'] == item_to_buy:
+
                     print(f"Ilość sztuk na magazynie - {item['qty']} szt.")
-                    quantity_to_buy = int(input("Podaj ilość sztuk do zakupu: "))
-                    while quantity_to_buy <= 0 or quantity_to_buy > item["qty"]:
+
+                    quantity_to_buy = int(
+                        input("Podaj ilość sztuk do zakupu: "))
+                    while quantity_to_buy <= 0 or quantity_to_buy > item['qty']:
                         quantity_to_buy = int(input(
                             f"Podaj ilość większą od 0 i mniejszą niż na magazynie ({item['qty']}): "))
 
-                    print(
-                        f"Zakupiono {quantity_to_buy} szt. produktu {item_to_buy}.")
+                    while True:
+                        try:
+                            sell_price = float(input("Podaj cenę sprzedaży: "))
 
-                    account += quantity_to_buy * item["price"]
-                    item["qty"] -= quantity_to_buy
+                            if sell_price <= 0:
+                                print("Cena musi być większa od 0.")
+                                continue
+
+                            break
+
+                        except ValueError:
+                            print("Cena musi być liczbą.")
+
+                    print(
+                        f"Sprzedano {quantity_to_buy} szt. produktu {item_to_buy}.")
+
+                    account += quantity_to_buy * sell_price
+                    item['qty'] -= quantity_to_buy
 
                     action = {
                         "komenda": operation,
                         "czas": datetime.now().strftime("%H:%M:%S"),
-                        "akcja": f"{account_before_operation} + {quantity_to_buy} * {item["price"]} = {account} zl"
+                        "akcja": (
+                            f"{account_before_operation} + "
+                            f"{quantity_to_buy} * {sell_price} = {account} zl"
+                        )
                     }
 
                     transaction_history.append(action)
@@ -162,27 +179,27 @@ while program_is_working:
             else:
                 print(f"Nie znaleziono produktu o nazwie {item_to_buy}.")
 
-    # KONTO
+        # KONTO
 
-        case "konto":
+        case "account":
             print(f"Stan konta wynosi: {account} zł")
 
-    # MAGAZYN
+        # MAGAZYN
 
-        case "magazyn":
-            article = input("Podaj nazwę produktu: ").strip().lower().capitalize()
+        case "inventory":
+            article = input(
+                "Podaj nazwę produktu: ").strip().lower().capitalize()
 
             for item in warehouse:
                 if item["name"] == article:
-                    print(f"Ilość w magazynie: {str(item["qty"])} szt.")
+                    print(f"Ilość w magazynie: {str(item['qty'])} szt.")
                     break
             else:
                 print("Nie mamy takiego produktu na magazynie")
 
-    # PRZEGLĄD
+        # PRZEGLĄD
 
-        case "przegląd":
-
+        case "review":
             if not len(transaction_history):
                 print("Nie było jeszcze żadnych transakcji")
                 continue
@@ -210,29 +227,31 @@ while program_is_working:
                     start = int(start_index)
                     end = int(end_index)
 
-                if start < 0 or end > len(transaction_history) or start >= end:
+                if start < 0 or end >= len(transaction_history) or start >= end:
                     print(
-                        f"Proszę wybrać prawidłowy zakres. Liczba dostępnych komend: {len(transaction_history)}")
+                        f"Proszę wybrać prawidłowy zakres. "
+                        f"Liczba dostępnych komend: {len(transaction_history)}")
                     break
 
                 print(
                     f"{'Komenda'.ljust(20)} {'Czas'.rjust(5)} {'Akcja'.rjust(10)}")
-                for transaction in transaction_history[start:end]:
+                for transaction in transaction_history[start:end + 1]:
                     print(
-                        f"{transaction["komenda"].ljust(21)} "
-                        f"{transaction["czas"].rjust(5)} "
-                        f"{transaction["akcja"].rjust(20)}"
+                        f"{transaction['komenda'].ljust(21)} "
+                        f"{transaction['czas'].rjust(5)} "
+                        f"{transaction['akcja'].rjust(20)}"
                     )
 
-    # LISTA
+        # LISTA
 
-        case "lista":
+        case "list":
             print(f"{'Name'.ljust(20)} {'Qty'.rjust(5)} {'Price'.rjust(10)}")
             for item in warehouse:
                 print(
-                    f"{item["name"].ljust(20)} {str(item["qty"]).rjust(5)} {str(item["price"]).rjust(10)}")
+                    f"{item['name'].ljust(20)} "
+                    f"{str(item['qty']).rjust(5)} {str(item['price']).rjust(10)}")
 
-    # KONIEC
+        # KONIEC
 
-        case "koniec":
+        case "end":
             program_is_working = False
