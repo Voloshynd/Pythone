@@ -112,206 +112,184 @@ class School:
 
     def show_class_info(self, class_name):
         return [student for student in self.students if
-                student['class'] == class_name]
+                student.class_name == class_name]
 
-    def show_clas_educator(self, class_name):
+    def show_class_educator(self, class_name):
         return [educator for educator in self.educators if
-                educator['class'] == class_name]
+                educator.class_name == class_name]
 
     def get_student_class(self, name):
         for student in self.students:
-            if student['name'] == name:
-                return student['class']
+            if student.name == name:
+                return student.class_name
         return None
 
     def show_teachers(self, student_class):
         return [teacher for teacher in self.teachers if
-                student_class in teacher['classes']]
+                student_class in teacher.classes]
 
     def show_teachers_classes(self, name):
         all_classes = []
 
         for teacher in self.teachers:
-            if teacher['name'] == name:
-                all_classes.extend(teacher["classes"])
+            if teacher.name == name:
+                all_classes.extend(teacher.classes)
 
         return list(set(all_classes))
 
     def show_educator_students(self, name):
         educator_class = None
         for educator in self.educators:
-            if educator['name'] == name:
-                educator_class = educator["class"]
+            if educator.name == name:
+                educator_class = educator.class_name
                 break
 
         if educator_class is None:
             return None
 
-        students_in_class = [student['name'] for student in self.students if
-                             student['class'] == educator_class]
+        students_in_class = [student.name for student in self.students if
+                             student.class_name == educator_class]
 
         return students_in_class
-
-
-def show_menu(options):
-    for option in options:
-        print(f"- {option}")
-
-
-def information_divider():
-    print("=" * 40 + "\n")
 
 
 OPERATIONS = ["create", "manage", "end"]
 SELECTIONS = ["student", "teacher", "educator", "end"]
 MENAGEMENT_OPTIONS = ["class", "student", "teacher", "educator", "end"]
 
-while True:
-    print("Dostepne komendy:")
-    show_menu(OPERATIONS)
-    chosen_operation = input("Prosze wpisac komende: ").strip().lower()
+def show_menu(options):
+    for option in options:
+        print(f"- {option}")
 
-    if chosen_operation not in OPERATIONS:
-        print("Nie napisałes żadnej z dostepnych komend")
-        continue
+def information_divider():
+    print("=" * 40 + "\n")
 
-    # CREATE
-    match chosen_operation:
-        case "create":
-            print("Dostepne opcje")
-            show_menu(SELECTIONS)
-            selection = input("Prosze wpisać opcje: ").strip().lower()
 
-            match selection:
-                case "student":
-                    school = School()
-                    person = Person()
-                    name = person.get_valid_name(
-                        "Podaj imię i nazwisko ucznia: ")
-                    class_name = person.get_valid_class(
-                        "Podaj klasę ucznia (np. 3C): ")
+ # CREATE
+def handle_create(school, person):
+    print("Dostepne opcje")
+    show_menu(SELECTIONS)
+    selection = input("Prosze wpisać opcje: ").strip().lower()
 
-                    school.add_student(name, class_name)
-                    print("Uczeń został utworzony!")
+    match selection:
+        case "student":
+            name = person.get_valid_name("Podaj imię i nazwisko ucznia: ")
+            class_name = person.get_valid_class("Podaj klasę ucznia (np. 3C): ")
 
-                case "teacher":
-                    school = School()
-                    person = Person()
-                    teacher = Teacher()
-                    name = person.get_valid_name(
-                        "Podaj imię i nazwisko nauczyciela: ")
-                    subject = teacher.get_valid_subject(
-                        "Podaj nazwę przedmiotu: ")
-                    classes = teacher.add_classes(
-                        "Podaj nazwy klas, które prowadzi nauczyciel lub zostaw linie pustą: "
-                    )
+            school.add_student(name, class_name)
+            print("Uczeń został utworzony!")
 
-                    school.add_teacher(name, subject, classes)
-                    print("Nauczyciel został utworzony!")
+        case "teacher":
+            teacher = Teacher()
 
-                case "educator":
-                    person = Person()
-                    school = School()
-                    name = person.get_valid_name(
-                        "Podaj imię i nazwisko wychowawcy: ")
-                    class_name = person.get_valid_class(
-                        "Podaj nazwę klasy (np. '3C'): ")
+            name = person.get_valid_name("Podaj imię i nazwisko nauczyciela: ")
+            subject = teacher.get_valid_subject("Podaj nazwę przedmiotu: ")
+            classes = teacher.add_classes(
+                "Podaj nazwy klas, które prowadzi nauczyciel lub zostaw linie pustą: "
+            )
 
-                    school.add_educator(name, class_name)
-                    print("Wychowawca został utworzony!")
+            school.add_teacher(name, subject, classes)
+            print("Nauczyciel został utworzony!")
 
-        # MANAGE
-        case "manage":
-            print("Dostepne opcje zarządzania użytkownikami")
-            show_menu(MENAGEMENT_OPTIONS)
-            management_option = input("Prosze wpisać opcje: ").strip().lower()
+        case "educator":
+            name = person.get_valid_name("Podaj imię i nazwisko wychowawcy: ")
+            class_name = person.get_valid_class("Podaj nazwę klasy (np. '3C'): ")
 
-            match management_option:
-                case "class":
-                    person = Person()
-                    school = School()
-                    class_name = person.get_valid_class(
-                        "Podaj nazwę klasy (np. '3C'): ")
+            school.add_educator(name, class_name)
+            print("Wychowawca został utworzony!")
 
-                    students_list = school.show_class_info(class_name)
-                    if not len(students_list):
-                        information_divider()
-                        print("Nie ma uczniów z tej klasy")
-                    else:
-                        information_divider()
-                        for student in students_list:
-                            print(student['name'])
+# MANAGE
+def handle_manage(school, person):
+    print("Dostepne opcje zarządzania użytkownikami")
+    show_menu(MENAGEMENT_OPTIONS)
+    management_option = input("Prosze wpisać opcje: ").strip().lower()
 
-                    educator = school.show_clas_educator(class_name)
-                    if not len(students_list):
-                        information_divider()
-                        print("Ta klasa nie posiada wychowawcy")
-                    else:
-                        information_divider()
-                        print(f"Wychowawca klasy {educator[0]['name']}")
+    match management_option:
 
-                case "student":
-                    person = Person()
-                    school = School()
+        case "class":
+            class_name = person.get_valid_class("Podaj nazwę klasy (np. '3C'): ")
 
-                    name = person.get_valid_name(
-                        "Podaj imię i nazwisko ucznia: ")
-                    student_class = school.get_student_class(name)
+            students_list = school.show_class_info(class_name)
 
-                    if student_class is None:
-                        information_divider()
-                        print("Nie ma takiego ucznia")
-                    else:
-                        teachers = school.show_teachers(student_class)
+            if not students_list:
+                information_divider()
+                print("Nie ma uczniów z tej klasy")
+            else:
+                information_divider()
+                for student in students_list:
+                    print(student.name)
 
-                        if not teachers:
-                            print(
-                                "Do tego ucznia nie przypisano żadnych lekcji")
-                        else:
-                            information_divider()
-                            print(
-                                f"Wszystkie lekcje ucznia {name} oraz jego nauczyciele:")
+        case "student":
+            name = person.get_valid_name("Podaj imię i nazwisko ucznia: ")
+            student_class = school.get_student_class(name)
 
-                            for teacher in teachers:
-                                print(
-                                    f"{teacher['subject'].rjust(10)} - {teacher['name']}")
+            if student_class is None:
+                information_divider()
+                print("Nie ma takiego ucznia")
+            else:
+                teachers = school.show_teachers(student_class)
 
-                case "teacher":
-                    person = Person()
-                    school = School()
-                    name = person.get_valid_name(
-                        "Podaj imię i nazwisko nauczyciela: ")
-                    classes = school.show_teachers_classes(name)
+                if not teachers:
+                    print("Do tego ucznia nie przypisano żadnych lekcji")
+                else:
+                    information_divider()
+                    print(f"Wszystkie lekcje ucznia {name} oraz jego nauczyciele:")
 
-                    if not classes:
-                        print("Do tego nauczyciela nie przypisano żadnej klasy")
-                    else:
-                        information_divider()
-                        print(
-                            f"Wszystkie klasy, które prowadzi nauczyciel - {name}:")
+                    for teacher in teachers:
+                        print(f"{teacher.subject.rjust(10)} - {teacher.name}")
 
-                        for each_class in classes:
-                            print(each_class)
+        case "teacher":
+            name = person.get_valid_name("Podaj imię i nazwisko nauczyciela: ")
+            classes = school.show_teachers_classes(name)
 
-                case "educator":
-                    person = Person()
-                    school = School()
-                    name = person.get_valid_name(
-                        "Podaj imię i nazwisko wychowawcy: ")
+            if not classes:
+                print("Do tego nauczyciela nie przypisano żadnej klasy")
+            else:
+                information_divider()
+                print(f"Wszystkie klasy, które prowadzi nauczyciel - {name}:")
 
-                    students_list = school.show_educator_students(name)
+                for each_class in classes:
+                    print(each_class)
 
-                    if students_list is None:
-                        print("Nie ma takiego wychowawcy")
-                    elif not students_list:
-                        print(
-                            "Do tego wychowawcy nie przypisano żadnych uczniów")
-                    else:
-                        information_divider()
-                        print(
-                            f"Wszyscy uczniowie, których prowadzi wychowawca - {name}:")
-                        for student_name in students_list:
-                            print(student_name)
+        case "educator":
+            name = person.get_valid_name("Podaj imię i nazwisko wychowawcy: ")
 
-        case "end":
-            break
+            students_list = school.show_educator_students(name)
+
+            if students_list is None:
+                print("Nie ma takiego wychowawcy")
+            elif not students_list:
+                print("Do tego wychowawcy nie przypisano żadnych uczniów")
+            else:
+                information_divider()
+                print(f"Wszyscy uczniowie, których prowadzi wychowawca - {name}:")
+
+                for student_name in students_list:
+                    print(student_name)
+
+def run_app():
+    school = School()
+    person = Person()
+
+    while True:
+        print("Dostepne komendy:")
+        show_menu(OPERATIONS)
+
+        chosen_operation = input("Prosze wpisac komende: ").strip().lower()
+
+        if chosen_operation not in OPERATIONS:
+            print("Nie napisałes żadnej z dostepnych komend")
+            continue
+
+        match chosen_operation:
+
+            case "create":
+                handle_create(school, person)
+
+            case "manage":
+                handle_manage(school, person)
+
+            case "end":
+                break
+
+run_app()
