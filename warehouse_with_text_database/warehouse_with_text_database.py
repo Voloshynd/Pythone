@@ -7,6 +7,7 @@ from constants import AVAILABLE_OPERATIONS as operations
 
 
 def run_accounting_app():
+
     balance = read_balance()
     warehouse = Warehouse(balance)
     current_stock = read_warehouse()
