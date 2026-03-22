@@ -3,27 +3,27 @@ import sys
 import os
 
 
-def read_csv(path):
+def read_csv(path: str) -> list:
     with open(path, newline="", encoding="utf-8") as f:
         return list(csv.reader(f))
 
 
-def write_csv(path, data):
+def write_csv(path: str, data: list) -> None:
     with open(path, "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerows(data)
 
 
-def check_path(path):
+def check_path(path: str) -> bool:
     return os.path.exists(path)
 
 
-def show_changes(data):
+def show_changes(data: list) -> None:
     for row in data:
         print("".join(row).replace(",", " "))
 
 
-def apply_changes(data, changes):
+def apply_changes(data: list, changes: list) -> list:
     for change in changes:
         if len(change.split(",")) < 3:
             continue
@@ -40,7 +40,7 @@ def apply_changes(data, changes):
     return data
 
 
-def main():
+def main() -> None:
     if len(sys.argv) < 3:
         print(
             "Użycie: python reader.py <plik_wejsciowy> <plik_wyjsciowy> <zmiany...>")
@@ -63,9 +63,10 @@ def main():
 
     is_exist = check_path(path_file_out)
 
-    if  not is_exist:
+    if not is_exist:
         os.open(path_file_out, os.O_CREAT | os.O_WRONLY)
     write_csv(path_file_out, data)
+
 
 if __name__ == "__main__":
     main()
