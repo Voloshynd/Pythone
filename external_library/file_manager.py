@@ -1,7 +1,6 @@
 import csv
 
 
-
 def write_results(selected_date, status):
     with open("results.csv", "a", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)

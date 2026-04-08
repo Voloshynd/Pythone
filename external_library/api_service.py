@@ -11,6 +11,7 @@ def fetch_weather_data(searched_date: str):
     city = None
     latitude = None
     longitude = None
+    response = None
 
     parsed_url = urlparse(url)
     params = parse_qs(parsed_url.query)
@@ -18,8 +19,7 @@ def fetch_weather_data(searched_date: str):
     for key, value in params.items():
         if key == "timezone":
             zone = value[0]
-            idx = zone.find("/")
-            city = zone[idx + 1:].strip()
+            city = zone.split("/")[-1].replace("_", " ")
             break
 
     geolocator = Nominatim(user_agent="external_library")
@@ -40,10 +40,11 @@ def fetch_weather_data(searched_date: str):
 
     try:
         response = requests.get(correct_url)
+        response.raise_for_status()
         return response.json()
-    except Exception as e:
-        print("Błąd połączenia z API:", e)
-        return None
+    except requests.exceptions.RequestException:
+        print(f"Błąd połączenia z API. Data jest poza zakresem ")
+        return response.json()
 
 
 def make_request(searched_date: str):
@@ -57,7 +58,7 @@ def make_request(searched_date: str):
         translation = GoogleTranslator(source='auto', target='pl').translate(
             msg)
         print(translation)
-        return
+        return False
 
     try:
         daily = data.get('daily')
@@ -66,6 +67,8 @@ def make_request(searched_date: str):
 
         write_results(selected_date, status)
         print(selected_date + " - " + status)
+        return True
 
-    except (KeyError, IndexError, TypeError):
+    except IndexError:
         print("Brak danych pogodowych")
+        return False
