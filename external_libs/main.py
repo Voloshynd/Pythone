@@ -26,32 +26,39 @@ def main():
                 print("Podaj datę dla jakiej należy sprawdzić pogodę")
                 while True:
                     user_date = input(
-                        "Datę należy podać w formacie YYYY-MM-DD (np. 2022-11-03): ").strip()
+                        "Datę należy podać w formacie YYYY-MM-DD (np. 2022-11-03): "
+                    ).strip()
 
                     if not user_date:
                         searched_date = validator.empty_date()
-                        break
-
-                    is_valid, message = validator.validate_format_date(
-                        user_date)
-
-                    if is_valid:
-                        searched_date = user_date
-                        break
                     else:
-                        print(message)
+                        is_valid, message = validator.validate_format_date(
+                            user_date)
 
-                data = weather_forecast.read_file()
+                        if not is_valid:
+                            print(message)
+                            continue
 
-                if searched_date in data:
-                    print(
-                        f"Szukana data - {searched_date} znajduje się w pliku")
-                    print("=" * 30)
-                    print(f"{searched_date} - {data[searched_date]}")
-                else:
+                        searched_date = user_date
+
+                    data = weather_forecast.read_file()
+
+                    if searched_date in data:
+                        print(
+                            f"Szukana data - {searched_date} znajduje się w pliku")
+                        print("=" * 30)
+                        print(f"{searched_date} - {data[searched_date]}")
+                        break
+
                     response = weather_forecast[searched_date]
+
+                    if response is None:
+                        print("Spróbuj podać inną datę.")
+                        continue
+
                     date, weather = response
                     print(f"{date} - {weather}")
+                    break
 
             case "iterate":
                 data = list(weather_forecast)
