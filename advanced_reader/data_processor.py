@@ -34,6 +34,12 @@ class BaseHandler:
     def __init__(self, file_in: str) -> None:
         self.file_in = file_in
 
+    def read_file(self) -> list:
+        with open(self.file_in, "r", encoding="utf-8") as f:
+            content = f.read()
+            data = [line.split(",") for line in content.split("\n")]
+            return data
+
 
 class CSVHandler(BaseHandler):
     def read_file(self) -> list:
@@ -54,12 +60,4 @@ class PKLHandler(BaseHandler):
     def read_file(self) -> list:
         with open(self.file_in, "rb") as f:
             data = pickle.load(f)
-            return data
-
-
-class TXTHandler(BaseHandler):
-    def read_file(self) -> list:
-        with open(self.file_in, "r", encoding="utf-8") as f:
-            content = f.read()
-            data = [line.split(",") for line in content.split("\n")]
             return data
