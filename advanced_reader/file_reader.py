@@ -26,7 +26,7 @@ class JSONReader(BaseReader):
     def read_file(self) -> list:
         with open(self.file_in, "r", encoding="utf-8") as f:
             data = json.load(f)
-            return data
+            return data['data']
 
 
 class PKLReader(BaseReader):

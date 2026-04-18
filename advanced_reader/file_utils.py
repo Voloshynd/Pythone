@@ -1,9 +1,9 @@
 import sys
 import os
-from file_service import JSONHandler, CSVHandler, PKLHandler, TXTHandler
+from file_reader import BaseReader, CSVReader, JSONReader, PKLReader
 
 
-class FileUtiles:
+class FileUtils:
 
     @staticmethod
     def check_arguments(arguments_list: list) -> None:
@@ -22,17 +22,17 @@ class FileUtiles:
     def get_handler(file_format: str, file_in: str) -> list | None:
         match file_format:
             case "csv":
-                handler = CSVHandler(file_in)
+                handler = CSVReader(file_in)
                 return handler.read_file()
             case "json":
-                handler = JSONHandler(file_in)
+                handler = JSONReader(file_in)
                 return handler.read_file()
             case "pkl":
-                handler = PKLHandler(file_in)
+                handler = PKLReader(file_in)
                 return handler.read_file()
             case "txt":
-                handler = TXTHandler(file_in)
+                handler = BaseReader(file_in)
                 return handler.read_file()
             case _:
                 print("Nieznany format pliku")
-                return None
+                sys.exit(1)
