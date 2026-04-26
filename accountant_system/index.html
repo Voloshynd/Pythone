@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html class="page" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0"/>
+    <title>Accaount system</title>
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+          rel="stylesheet">
+</head>
+<body class="page__body">
+<header class="header">
+    <div class="header__logo">
+        <a class="header__logo-link" href="#home">
+            <i class="fa-solid fa-warehouse"></i>
+            Magazyn i księgowość
+        </a>
+    </div>
+
+    <div class="nav-burger">
+        <button class="nav-burger__btn">
+            <i class="fa-solid fa-sort-down"></i>
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <ul class="nav-burger__list">
+            <li class="nav-burger__item">
+                <a class="nav-burger__link" href="#home">Strona główna</a>
+            </li>
+            <li class="nav-burger__item">
+                <a class="nav-burger__link" href="#history">Historia</a>
+            </li>
+        </ul>
+    </div>
+
+    <nav class="nav">
+        <ul class="nav__list">
+            <li class="nav__item">
+                <a class="nav__link" href="#home">
+                    <i class="fa-solid fa-house"></i> Strona główna
+                </a>
+            </li>
+            <li class="nav__item">
+                <a class="nav__link" href="#history">
+                    <i class="fa-solid fa-clock-rotate-left"></i> Historia
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<div class="main">
+    <div class="main__wrapper">
+
+        <div class="main__section" id="home">
+            <h1 class="main__title title">Strona główna</h1>
+
+            <div class="main__content">
+                <div class="data">
+                    <div class="data__card data__card--stock">
+                        <div class="data__icon">
+                            <i class="fa-solid fa-cube"></i>
+                        </div>
+
+                        <div class="data__info">
+                            <h3 class="data__label">Stan magazynowy</h3>
+                            <p class="data__value">XXX</p>
+                            <p class="data__msg">Liczba produktów</p>
+                        </div>
+                    </div>
+
+                    <div class="data__card data__card--balance">
+                        <div class="data__icon">
+                            <i class="fa-solid fa-wallet"></i>
+                        </div>
+
+                        <div class="data__info">
+                            <h3 class="data__label">Aktualne saldo</h3>
+                            <p class="data__value">XXX</p>
+                            <p class="data__msg">Stan konta</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="options">
+                <form class="options__form">
+                    <h2 class="options__title">
+                        <i class="fa-solid fa-cart-shopping"></i> Zakup
+                    </h2>
+
+                    <div class="options__field">
+                        <label class="options__label" for="buy-name">Nazwa
+                            produktu</label>
+                        <input class="options__input" id="buy-name" type="text"
+                               placeholder="Nazwa produktu">
+                    </div>
+
+                    <div class="options__group">
+                        <div class="options__field">
+                            <label class="options__label" for="buy-price">Cena
+                                jednostkowa (zł)</label>
+                            <input class="options__input" id="buy-price"
+                                   type="number" placeholder="Cena jednostkowa">
+                        </div>
+
+                        <div class="options__field">
+                            <label class="options__label" for="buy-qty">Liczba
+                                produktów</label>
+                            <input class="options__input" id="buy-qty"
+                                   type="number" placeholder="Liczba sztuk">
+                        </div>
+                    </div>
+
+                    <button class="btn options__btn" type="button">Kupić
+                    </button>
+                </form>
+
+                <form class="options__form">
+                    <h2 class="options__title">
+                        <i class="fa-solid fa-credit-card"></i> Sprzedaż
+                    </h2>
+
+                    <div class="options__field">
+                        <label class="options__label" for="sell-name">Nazwa
+                            produktu</label>
+                        <input class="options__input" id="sell-name" type="text"
+                               placeholder="Nazwa produktu">
+                    </div>
+
+                    <div class="options__group">
+                        <div class="options__field">
+                            <label class="options__label" for="sell-price">Cena
+                                jednostkowa (zł)</label>
+                            <input class="options__input" id="sell-price"
+                                   type="number" placeholder="Cena jednostkowa">
+                        </div>
+
+                        <div class="options__field">
+                            <label class="options__label" for="sell-qty">Liczba
+                                produktów</label>
+                            <input class="options__input" id="sell-qty"
+                                   type="number" placeholder="Liczba sztuk">
+                        </div>
+                    </div>
+
+                    <button class="btn options__btn" type="button">Sprzedać
+                    </button>
+                </form>
+
+                <form class="options__form">
+                    <h2 class="options__title">
+                        <i class="fa-solid fa-file-invoice"></i> Zmiana salda
+                    </h2>
+
+                    <textarea class="options__textarea"
+                              placeholder="Wpisz komentarz..."
+                              rows="5"></textarea>
+
+                    <div class="options__field">
+                        <label class="options__label" for="amount">Kwota</label>
+                        <input class="options__input" id="amount" type="number"
+                               placeholder="Kwota">
+                    </div>
+
+                    <button class="btn options__btn" type="button">Zmienić
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="history" id="history">
+        <h2 class="history-title title">Historia operacji</h2>
+        <div class="history-filter">
+            <p class="history-label">Zakres:</p>
+            <input class="history-input" type="number" placeholder="Od">
+            <input class="history-input" type="number" placeholder="Do">
+            <button class="btn history-btn">Pokaz</button>
+        </div>
+        <table class="history-table">
+            <thead class="history-table__head">
+            <tr class="history-table__row history-table__row--head">
+                <th class="history-table__cell">#</th>
+                <th class="history-table__cell">Komenda</th>
+                <th class="history-table__cell">Data</th>
+                <th class="history-table__cell">Czas</th>
+                <th class="history-table__cell">Akcja</th>
+                <th class="history-table__cell">Saldo</th>
+            </tr>
+            </thead>
+
+            <tbody class="history-table__body">
+            <tr class="history-table__row">
+                <td class="history-table__cell">1</td>
+                <td class="history-table__cell">Zakup</td>
+                <td class="history-table__cell">00/00/0000</td>
+                <td class="history-table__cell">00:00:00</td>
+                <td class="history-table__cell">10.0 + 600</td>
+                <td class="history-table__cell">610.00</td>
+            </tr>
+
+            <tr class="history-table__row">
+                <td class="history-table__cell">2</td>
+                <td class="history-table__cell">Sprzedaż</td>
+                <td class="history-table__cell">00/00/0000</td>
+                <td class="history-table__cell">00:00:00</td>
+                <td class="history-table__cell">610.00 + 80.00</td>
+                <td class="history-table__cell">690.00</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

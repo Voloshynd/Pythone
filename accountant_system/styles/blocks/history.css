@@ -1,0 +1,32 @@
+
+.history {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px) scale(0.98);
+    position: absolute;
+    width: 100%;
+    transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#history:target {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    position: relative;
+}
+
+.history-filter {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.history-label {
+    font-weight: 600;
+}
+
+.history-input {
+    box-sizing: border-box;
+    height: 30px;
+}

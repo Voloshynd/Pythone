@@ -1,0 +1,59 @@
+.data {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding-bottom: 40px;
+}
+
+.data__card {
+    padding: 15px;
+    background-color: #fff;
+    display: flex;
+    gap: 10px;
+    border-radius: 6px;
+}
+
+.data__icon {
+    width: 40px;
+    height: 40px;
+    padding: 15px;
+    background-color: rgba(19, 4, 64, 0.1);
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.data__info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.data__label {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.data__msg {
+    font-size: 12px;
+}
+
+.fa-cube,
+.fa-wallet {
+    color: #010129;
+}
+
+@media (max-width: 640px) {
+    .data {
+        flex-direction: column;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px),
+(max-width: 1200px) {
+    .data {
+        justify-content: center;
+    }
+}

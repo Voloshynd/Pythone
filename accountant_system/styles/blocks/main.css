@@ -1,0 +1,26 @@
+.main {
+    background-color: #FAFAFA;
+    min-height: 100vh;
+}
+
+.main__wrapper {
+    padding: 15px;
+    height: 100%;
+    position: relative;
+}
+
+.main__section {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px) scale(0.98);
+    position: absolute;
+    width: 100%;
+    transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#home:target {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    position: relative;
+}

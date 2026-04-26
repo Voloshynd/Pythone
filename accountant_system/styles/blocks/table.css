@@ -1,0 +1,30 @@
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.history-table__head {
+    background-color: #130440;
+    color: #fff;
+}
+
+.history-table__cell {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.history-table__row {
+    border-bottom: 1px solid #eee;
+}
+
+.history-table__row:hover:not(.history-table__row--head) td {
+    background-color: #f5f5ff;
+}
+
+.history-table__row--head {
+    font-weight: bold;
+}
