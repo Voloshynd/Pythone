@@ -1,8 +1,10 @@
 pages:
   stage: deploy
+  tags:
+    - shared
   script:
     - mkdir .public
-    - cp -r * .public
+    - cp -p *.html .public
     - mv .public public
   artifacts:
     paths:
