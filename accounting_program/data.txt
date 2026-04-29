@@ -1,0 +1,3 @@
+769.98
+[{'komenda': 'balance', 'czas': '18:56:54', 'akcja': '0.0 + 10 = 10.0 zł'}, {'komenda': 'balance', 'czas': '18:57:39', 'akcja': '10.0 + 600 = 610.0 zł'}, {'komenda': 'sell', 'czas': '18:58:03', 'akcja': '10.0 + 2 * 79.99 = 769.98 zl'}]
+[{'name': 'Piłka nożna', 'qty': 10, 'price': 79.99}, {'name': 'Piłka koszykowa', 'qty': 8, 'price': 89.99}, {'name': 'Rakieta tenisowa', 'qty': 5, 'price': 249.99}, {'name': 'Buty do biegania', 'qty': 6, 'price': 399.99}]

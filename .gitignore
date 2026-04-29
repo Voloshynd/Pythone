@@ -37,3 +37,8 @@ go.work
 pprof_*.out
 profiler_*.out
 *.prof
+
+.venv/
+venv/
+__pycache__/
+*.pyc
