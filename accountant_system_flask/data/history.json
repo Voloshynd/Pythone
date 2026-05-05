@@ -1,0 +1,37 @@
+[
+  {
+    "command": "balance",
+    "time": "18:56:54",
+    "date": "04.05.2026",
+    "action": "00.00 + 10.00",
+    "balance": "10.00 zł"
+  },
+  {
+    "command": "balance",
+    "time": "18:57:39",
+    "date": "02.05.2026",
+    "action": "10.00 + 600.00",
+    "balance": "610.00 zł"
+  },
+  {
+    "command": "sell",
+    "time": "18:58:03",
+    "date": "30.04.2026",
+    "action": "10.00 + 2 * 79.99",
+    "balance": "769.98 zl"
+  },
+  {
+    "command": "balance",
+    "time": "19:20:01",
+    "date": "01.05.2026",
+    "action": "894.97 - 50.00",
+    "balance": "844.97 zł"
+  },
+  {
+    "command": "buy",
+    "time": "19:25:33",
+    "date": "29.04.2026",
+    "action": "844.97 - 5 * 12.50",
+    "balance": "782.47 zł"
+  }
+]

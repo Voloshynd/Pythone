@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Piłka nożna",
+    "qty": 10,
+    "price": 79.99
+  },
+  {
+    "name": "Piłka koszykowa",
+    "qty": 8,
+    "price": 89.99
+  },
+  {
+    "name": "Rakieta tenisowa",
+    "qty": 5,
+    "price": 249.99
+  },
+  {
+    "name": "Buty do biegania",
+    "qty": 6,
+    "price": 399.99
+  }
+]
