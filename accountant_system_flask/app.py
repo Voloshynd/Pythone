@@ -11,7 +11,6 @@ balance_obj = BalanceManager(balance_path)
 
 stock_path = get_path("data/stock.json")
 stock_obj = StockManager(stock_path)
-stock_data = stock_obj.load_stock()
 
 history_path = get_path("data/history.json")
 history_obj = HistoryManager(history_path)
@@ -19,9 +18,11 @@ history_obj = HistoryManager(history_path)
 
 @app.route('/')
 def home():
+    balance_data = balance_obj.load_balance()
+    stock_data = stock_obj.load_stock()
     return render_template(
-        "index.html",
-        amount=balance_obj.load_balance(),
+        "main.html",
+        amount=balance_data,
         stock=stock_data
     )
 
