@@ -1,0 +1,73 @@
+.list {
+  box-sizing: border-box;
+  background: rgba(230, 230, 230, 0.25);
+  border: 1px solid #a6a6a6;
+  border-radius: 6px;
+  padding: 15px;
+}
+.list__empty {
+  text-align: center;
+  font-size: 24px;
+}
+.list__title {
+  margin: 0;
+  margin-bottom: 10px;
+}
+.list__card {
+  border-left: 4px solid rgb(134, 0, 179);
+  padding-left: 15px;
+  margin-bottom: 15px;
+}
+.list__card-due__date {
+  margin: 0;
+  margin-bottom: 15px;
+}
+.list__card-status__icons {
+  display: flex;
+  align-items: center;
+}
+.list__card-content {
+  box-sizing: border-box;
+  background-color: rgba(230, 230, 230, 0.25);
+  border: 1px solid #a6a6a6;
+  border-radius: 6px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.list__card-title {
+  margin: 0;
+  margin-bottom: 8px;
+}
+.list__card-title__cross-out {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.list__card-block {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+}
+.list__card-priority {
+  background-color: #EF4444;
+  padding: 4px;
+  border-radius: 6px;
+  font-size: 12px;
+}
+.list__card-category {
+  background-color: #3B82F6;
+  padding: 4px;
+  border-radius: 6px;
+  font-size: 12px;
+}
+.list__status-toggle {
+  color: #e6e6e6;
+}
+
+.fa-regular {
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=list.css.map */

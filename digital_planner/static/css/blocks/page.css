@@ -1,0 +1,22 @@
+.page__body {
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(to right, #1a0033, #4f0099);
+  color: #e6e6e6;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+.page__body-wrapper {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.page__main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/*# sourceMappingURL=page.css.map */

@@ -1,0 +1,92 @@
+.toolbar {
+  box-sizing: border-box;
+  height: 80px;
+  border-radius: 6px;
+  border: 1px solid #a6a6a6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  background: rgba(230, 230, 230, 0.25);
+  gap: 15px;
+}
+.toolbar__filter, .toolbar__priority, .toolbar__add-btn, .toolbar__search-wrapper {
+  height: 40px;
+  border: 1px solid #a6a6a6;
+  border-radius: 6px;
+  background-color: transparent;
+  background-color: rgba(230, 230, 230, 0.2);
+  color: #e6e6e6;
+  cursor: pointer;
+}
+.toolbar__time-btn, .toolbar__add-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
+  align-items: center;
+  box-sizing: border-box;
+  height: 40px;
+  width: 92px;
+  color: #e6e6e6;
+  text-decoration: none;
+  border: 1px solid #a6a6a6;
+  background-color: rgba(230, 230, 230, 0.2);
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.6s ease;
+}
+.toolbar__time-btn:hover {
+  background: rgba(230, 230, 230, 0.4);
+}
+.toolbar__filter, .toolbar__priority {
+  flex: 1;
+}
+.toolbar__search-wrapper {
+  flex: 2;
+  box-sizing: border-box;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.toolbar__search-label {
+  cursor: pointer;
+}
+.toolbar__search {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  width: 100%;
+  color: #e6e6e6;
+  font-weight: 700;
+}
+.toolbar__search::placeholder {
+  color: #e6e6e6;
+  font-weight: 700;
+}
+.toolbar__actions {
+  display: flex;
+  gap: 15px;
+}
+.toolbar__add-btn {
+  background-color: #800080;
+}
+.toolbar__add-btn:hover {
+  background-color: #b300b3;
+}
+.toolbar__timeline, .toolbar__add-btn, .toolbar__priority, .toolbar__filter {
+  font-weight: 700;
+}
+.toolbar__option {
+  color: #4d4d33;
+  font-weight: 700;
+}
+.toolbar__search-wrapper:focus-within, .toolbar__filter:focus, .toolbar__priority:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgb(134, 0, 179);
+}
+
+/*# sourceMappingURL=toolbar.css.map */

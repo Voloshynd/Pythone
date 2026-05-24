@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html class="page" lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0"/>
+    <title>Digital planner</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/main.css') }}">
+
+</head>
+<body class="page__body">
+<div class="page__body-wrapper">
+    <h1 class="title"><i class="fa-solid fa-calendar-days"></i> Digital Planner
+    </h1>
+    <div class="summary">
+        <div class="summary__item">
+            <p class="summary__value summary__value--tasks">{{ task_len }}</p>
+            <p class="summary__label">Total Tasks</p>
+        </div>
+        <div class="summary__item">
+            <p class="summary__value summary__value--complete">{{ completed
+                }}</p>
+            <p class="summary__label">Completed</p>
+        </div>
+        <div class="summary__item">
+            <p class="summary__value summary__value--progress">{{ progress
+                }}</p>
+            <p class="summary__label">In Progress</p>
+        </div>
+        <div class="summary__item">
+            <p class="summary__value summary__value--overdue">{{ passed }}</p>
+            <p class="summary__label">Overdue</p>
+        </div>
+    </div>
+
+    <div class="toolbar">
+        <div class="toolbar__search-wrapper">
+            <label class="toolbar__search-label" for="search">
+                <i class="toolbar__search-icon fa-solid fa-magnifying-glass"></i>
+            </label>
+            <input
+                    class="toolbar__search"
+                    id="search"
+                    type="text"
+                    name="search"
+                    value="{{ query }}"
+                    placeholder="Search tasks..."
+            >
+            <a class="toolbar__close-label"
+               href="{{ url_for('results', query='', status=status, priority=priority) }}">
+                <i class="toolbar__close-icon  fa-solid fa-xmark"></i>
+            </a>
+        </div>
+
+        <select class="toolbar__filter" name="status">
+            <option class="toolbar__option" value="all" {% if status==
+            "all" %}selected{% endif %}>All Status</option>
+            <option class="toolbar__option" value="todo" {% if status==
+            "todo" %}selected{% endif %}>To Do</option>
+            <option class="toolbar__option" value="in_progress" {% if status==
+            "in_progress" %}selected{% endif %}>In Progress</option>
+            <option class="toolbar__option" value="completed" {% if status==
+            "completed" %}selected{% endif %}>Completed</option>
+            <option class="toolbar__option" value="overdue" {% if status==
+            "overdue" %}selected{% endif %}>Overdue</option>
+        </select>
+
+        <select class="toolbar__priority" name="priority">
+            <option class="toolbar__option" value="all" {% if priority==
+            "all" %}selected{% endif %}>All Priority</option>
+            <option class="toolbar__option" value="high" {% if priority==
+            "high" %}selected{% endif %}>High</option>
+            <option class="toolbar__option" value="medium" {% if priority==
+            "medium" %}selected{% endif %}>Medium</option>
+            <option class="toolbar__option" value="low" {% if priority==
+            "low" %}selected{% endif %}>Low</option>
+        </select>
+
+        <div class="toolbar__actions">
+            <a class="toolbar__time-btn" href="{{ next_view.url }}">
+                <i class="fa-regular fa-calendar"></i>{{ next_view.text }}
+            </a>
+            <a class="toolbar__add-btn" href="/add/">
+                <i class="fa-solid fa-plus"></i> Add Task
+            </a>
+        </div>
+    </div>
+
+    <main class="page__main">
+        {% block content %}
+        {% endblock %}
+    </main>
+</div>
+<script src="{{ url_for('static', filename='js/helper.js') }}"></script>
+</body>
+</html>

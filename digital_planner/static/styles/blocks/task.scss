@@ -1,0 +1,101 @@
+@use '../utils/vars' as v;
+
+
+.task {
+    box-sizing: border-box;
+    background: v.$background-blocks;
+    border-radius: v.$border-radius;
+    border: v.$border;
+    transition: background-color 0.6s ease;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    transition: transform 0.9s;
+
+     &:hover {
+        transform: scale(1.01)
+    }
+
+    &__empty {
+        text-align: center;
+        font-size: 24px;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+    }
+
+    &__status-icons i,
+    &__actions i {
+        margin-top: 6px;
+    }
+
+    &__title {
+        margin: 0;
+        margin-bottom: 10px;
+    }
+
+    &__desc {
+        margin: 0;
+        margin-bottom: 8px;
+    }
+
+    &__status-icons,
+    &__actions {
+        cursor: pointer;
+    }
+
+    &__status-toggle {
+        color: v.$white-accent;
+    }
+
+    &__meta {
+        display: flex;
+        flex-direction: row;
+        gap: 6px;
+    }
+
+    &__priority {
+        background-color: v.$overdue-accent;
+        padding: 4px;
+        border-radius: v.$border-radius;
+        font-size: 12px;
+    }
+
+    &__category {
+        background-color: v.$progress-accent;
+        padding: 4px;
+        border-radius: v.$border-radius;
+        font-size: 12px;
+    }
+
+    &__due-date {
+       background-color: v.$done-accent;
+       padding: 4px;
+       border-radius: v.$border-radius;
+       font-size: 12px;
+
+       &--overdue {
+            background-color: v.$overdue-accent;
+       }
+
+       &--regular {
+            background-color: #0073e6;
+       }
+    }
+}
+
+.fa-solid {
+    color: v.$white-accent;
+}
+
+.fa-clock {
+    color: v.$progress-accent;
+}
+
+.fa-circle-check {
+    color: v.$completed-accent;
+}
+

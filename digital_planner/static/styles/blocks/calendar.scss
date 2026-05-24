@@ -1,0 +1,73 @@
+@use '../utils/vars' as v;
+
+.calendar table {
+    box-sizing: border-box;
+    width: 100%;
+    border-collapse: separate;
+    border: v.$border;
+    border-radius: v.$border-radius;
+    overflow: hidden;
+}
+
+.calendar th {
+    padding: 10px;
+}
+
+.calendar td {
+    height: 40px;
+    vertical-align: top;
+    padding: 6px;
+}
+
+.calendar table {
+    background: v.$background-blocks;
+}
+
+ table.month {
+    height: 100%;
+}
+
+.month tbody tr:nth-child(2) {
+   color: #404040;
+}
+
+.month tbody tr:not(:nth-child(1)):not(:nth-child(2)) td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.month th.month {
+    height: 40px;
+}
+
+.month tr:nth-child(2) th {
+    height: 40px;
+}
+
+.month__tasks {
+    font-size: 12px;
+}
+
+.to-do {
+    background-color: v.$done-accent;
+    border-radius: v.$border-radius;
+}
+
+.in-progress {
+    background-color: v.$progress-accent;
+    border-radius: v.$border-radius;
+}
+
+.overdue {
+    background-color: v.$overdue-accent;
+    border-radius: v.$border-radius;
+}
+
+.completed {
+    background-color: v.$completed-accent;
+    border-radius: v.$border-radius;
+}
+
+.to-do, .in-progress, .overdue, .completed {
+    cursor: pointer;
+}

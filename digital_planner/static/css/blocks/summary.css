@@ -1,0 +1,32 @@
+.summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+.summary__item {
+  padding: 15px;
+  border: 1px solid #a6a6a6;
+  border-radius: 6px;
+  width: 100%;
+  background: rgba(230, 230, 230, 0.25);
+}
+.summary__value {
+  font-size: 30px;
+  margin: 0;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+.summary__value--complete {
+  color: #22C55E;
+}
+.summary__value--progress {
+  color: #3B82F6;
+}
+.summary__value--overdue {
+  color: #EF4444;
+}
+.summary__label {
+  margin: 0;
+}
+
+/*# sourceMappingURL=summary.css.map */

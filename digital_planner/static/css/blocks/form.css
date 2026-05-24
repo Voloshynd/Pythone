@@ -1,0 +1,126 @@
+.form {
+  box-sizing: border-box;
+  padding: 15px;
+  background-color: #29293d;
+  border-radius: 6px;
+  border: 1px solid #a6a6a6;
+}
+.form__title {
+  margin: 0;
+  margin-bottom: 15px;
+}
+.form__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.form__field {
+  display: flex;
+  flex-direction: column;
+}
+.form__label {
+  color: #e6e6e6;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  cursor: pointer;
+}
+.form__input, .form__select {
+  padding-inline: 4px;
+  box-sizing: border-box;
+  height: 40px;
+  border: 1px solid #a6a6a6;
+  border-radius: 6px;
+  background-color: transparent;
+  color: #e6e6e6;
+  font-weight: 600;
+}
+.form__input:focus, .form__input:focus, .form__select:focus, .form__select:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgb(134, 0, 179);
+  color: #e6e6e6;
+  font-weight: 600;
+}
+.form__input::placeholder, .form__input::placeholder, .form__select::placeholder, .form__select::placeholder {
+  color: #999999;
+}
+.form__textarea {
+  resize: none;
+  border: 1px solid #a6a6a6;
+  border-radius: 6px;
+  background-color: transparent;
+  color: #e6e6e6;
+  font-weight: 600;
+}
+.form__textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgb(134, 0, 179);
+  color: #e6e6e6;
+  font-weight: 600;
+}
+.form__group {
+  display: flex;
+  flex-direction: column;
+}
+.form__row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.form__select {
+  width: 120px;
+  color: #999999;
+}
+.form__select-option {
+  color: #4d4d33;
+  font-weight: 700;
+}
+.form__actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 6px;
+}
+.form__button {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: #e6e6e6;
+  height: 40px;
+  border-radius: 6px;
+  border: 1px solid #a6a6a6;
+}
+.form__input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+.form__button--primary {
+  background-color: #800080;
+  transition: background-color 0.6s ease;
+  cursor: pointer;
+}
+.form__button--primary:hover {
+  background-color: #b300b3;
+}
+.form__button--secondary {
+  cursor: pointer;
+  transition: background-color 0.6s ease;
+}
+.form__button--secondary:hover {
+  background-color: #40405c;
+}
+.form__input::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}
+.form__input[type=date] {
+  color: #e6e6e6;
+}
+.form__input-error {
+  display: block;
+  font-size: 10px;
+  color: #ff0000;
+}
+
+/*# sourceMappingURL=form.css.map */

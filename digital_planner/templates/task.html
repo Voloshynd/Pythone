@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+{% if task_list %}
+{% for task in task_list %}
+<div class="task" id="task-{{ task.id }}">
+    <div class="task__content">
+        <div class="task__status-icons">
+            <a class="task__status-toggle" href="/toggle/{{ task.id }}/">
+                {% if task.status == "To Do" %}
+                <i class="fa-regular fa-circle"></i>
+
+                {% elif task.status == "In Progress" %}
+                <i class="fa-regular fa-clock"></i>
+
+                {% elif task.status == "Completed" %}
+                <i class="fa-regular fa-circle-check"></i>
+
+                {% endif %}
+            </a>
+        </div>
+        <div class="task__info">
+            {% if task.status == "Completed" %}
+            <s>{{ task.title }}</s>
+            {% else %}
+            {{ task.title }}
+            {% endif %}
+            <p class="task__desc">{{ task.description }}</p>
+            <div class="task__meta">
+                <div class="task__priority task__priority--high">{{
+                    task.priority.upper() }}
+                </div>
+                <div class="task__category">{{ task.category }}</div>
+                {% if task.date < now %}
+                <div class="task__due-date task__due-date--overdue">
+                    <i class="fa-regular fa-calendar"></i> {{
+                    task.date.strftime("%B %d, %Y") }}(Overdue)
+                </div>
+                {% else %}
+                <div class="task__due-date task__due-date--regular">
+                    <i class="fa-regular fa-calendar"></i> {{
+                    task.date.strftime("%B %d, %Y") }}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="task__actions">
+        <a class="task__delete-btn" href="/delete/{{ task.id }}/">
+            <i class="fa-solid fa-trash"></i>
+        </a>
+    </div>
+</div>
+{% endfor %}
+{% else %}
+<div class="list__empty">
+    No tasks found. Add your first task to get started!
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="modal">
+    <div class="modal__wrapper">
+        <form class="form" method="POST" action="/add/">
+            <h2 class="form__title">Add New Task</h2>
+
+            <div class="form__wrapper">
+                <div class="form__field">
+                    <label class="form__label" for="form__title">Title</label>
+                    <input class="form__input" type="text" name="title"
+                           id="form__title" placeholder="Task title" required>
+                    {% if error%}
+                        <span class="form__input-error">{{ error if error else " " }}</span>
+                    {% endif %}
+                </div>
+
+                <div class="form__field">
+                    <label class="form__label"
+                           for="form__description">Description</label>
+                    <textarea class="form__textarea" name="description"
+                              id="form__description"
+                              rows="6"
+                              cols="40"
+                              placeholder="Task description"
+                              required></textarea>
+                </div>
+
+                <div class="form__row">
+                    <div class="form__group">
+                        <label class="form__label"
+                               for="form__priority">Priority</label>
+                        <select class="form__select" name="priority"
+                                id="form__priority">
+                            <option class="form__select-option" value="high">
+                                High
+                            </option>
+                            <option class="form__select-option" value="medium">
+                                Medium
+                            </option>
+                            <option class="form__select-option" value="low">
+                                Low
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form__group">
+                        <label class="form__label"
+                               for="form__category">Category</label>
+                        <input class="form__input" type="text" name="category"
+                               id="form__category" placeholder="Category"
+                               required>
+                    </div>
+                </div>
+
+                <div class="form__field">
+                    <label class="form__label" for="due-date">Due
+                        Date</label>
+                    <input class="form__input" type="date" name="due_date"
+                           min="{{ today }}" id="due-date" required>
+                </div>
+
+                <div class="form__actions">
+                    <button class="form__button form__button--primary"
+                            type="submit">
+                        Add Task
+                    </button>
+
+                    <a class="form__button form__button--secondary"
+                       href="{{ link }}">
+                        Cancel
+                    </a>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+{% endblock %}

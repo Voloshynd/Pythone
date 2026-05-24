@@ -1,0 +1,152 @@
+@use '../utils/vars' as v;
+
+.form {
+    box-sizing: border-box;
+    padding: 15px;
+    background-color: #29293d;
+    border-radius: v.$border-radius;
+    border: v.$border;
+
+    &__title {
+        margin: 0;
+        margin-bottom: 15px;
+    }
+
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    &__field {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__label {
+        color: v.$white-accent;
+        font-size: 13px;
+        font-weight: 500;
+        margin-bottom: 4px;
+        cursor: pointer;
+    }
+
+    &__input,
+    &__select {
+        padding-inline: 4px;
+        box-sizing: border-box;
+        height: v.$btn-height;
+        border: v.$border;
+        border-radius: v.$border-radius;
+        background-color: transparent;
+        color: v.$white-accent;
+        font-weight: 600;
+
+        &:focus,
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(134, 0, 179, 1);
+            color: v.$white-accent;
+            font-weight: 600;
+        }
+
+        &::placeholder,
+        &::placeholder {
+            color: #999999;
+        }
+    }
+
+    &__textarea {
+        resize: none;
+        border: v.$border;
+        border-radius: v.$border-radius;
+        background-color: transparent;
+        color: v.$white-accent;
+        font-weight: 600;
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(134, 0, 179, 1);
+            color: v.$white-accent;
+            font-weight: 600;
+        }
+    }
+
+    &__group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    &__select {
+        width: 120px;
+        color: #999999;
+    }
+
+    &__select-option {
+        color: #4d4d33;
+        font-weight: 700;
+    }
+
+    &__actions {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 6px;
+    }
+
+    &__button {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        color: v.$white-accent;
+        height: v.$btn-height;
+        border-radius: v.$border-radius;
+        border: v.$border;
+    }
+
+    &__input::-webkit-calendar-picker-indicator {
+        cursor: pointer;
+    }
+
+     &__button--primary {
+        background-color: #800080;
+        transition: background-color 0.6s ease;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #b300b3;
+        }
+     }
+
+     &__button--secondary {
+         cursor: pointer;
+         transition: background-color 0.6s ease;
+
+         &:hover {
+            background-color: #40405c;
+         }
+     }
+
+     &__input::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+        cursor: pointer;
+     }
+
+     &__input[type="date"] {
+        color: v.$white-accent;
+     }
+
+     &__input-error {
+        display: block;
+        font-size: 10px;
+        color: #ff0000;
+    }
+}

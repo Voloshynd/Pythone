@@ -1,0 +1,38 @@
+@use '../utils/vars' as v;
+
+.summary {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+
+    &__item {
+        padding: 15px;
+        border: v.$border;
+        border-radius: v.$border-radius;
+        width: 100%;
+        background: v.$background-blocks;
+    }
+
+    &__value {
+        font-size: 30px;
+        margin: 0;
+        font-weight: 400;
+        margin-bottom: 10px;
+
+        &--complete {
+            color: v.$completed-accent;
+        }
+
+        &--progress {
+            color: v.$progress-accent;
+        }
+
+        &--overdue {
+            color:v.$overdue-accent;
+        }
+    }
+
+    &__label {
+        margin: 0;
+    }
+}

@@ -1,0 +1,85 @@
+@use '../utils/vars' as v;
+
+.list {
+    box-sizing: border-box;
+    background: v.$background-blocks;
+    border: v.$border;
+    border-radius: v.$border-radius;
+    padding: 15px;
+
+    &__empty {
+        text-align: center;
+        font-size: 24px;
+    }
+
+    &__title {
+        margin: 0;
+        margin-bottom: 10px;
+    }
+
+    &__card {
+        border-left: 4px solid rgba(134, 0, 179, 1);
+        padding-left: 15px;
+        margin-bottom: 15px;
+
+        &-due__date {
+            margin: 0;
+            margin-bottom: 15px;
+        }
+
+        &-status__icons {
+            display: flex;
+            align-items: center;
+        }
+
+        &-content {
+            box-sizing: border-box;
+            background-color: v.$background-blocks;
+            border: v.$border;
+            border-radius: v.$border-radius;
+            padding: 10px;
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+        }
+
+        &-title {
+            margin: 0;
+            margin-bottom: 8px;
+
+            &__cross-out {
+                display: block;
+                font-weight: 600;
+                margin-bottom: 8px;
+            }
+        }
+
+        &-block {
+            display: flex;
+            flex-direction: row;
+            gap: 6px;
+        }
+
+        &-priority {
+            background-color: v.$overdue-accent;
+            padding: 4px;
+            border-radius: v.$border-radius;
+            font-size: 12px;
+        }
+
+        &-category {
+            background-color: v.$progress-accent;
+            padding: 4px;
+            border-radius: v.$border-radius;
+            font-size: 12px;
+        }
+    }
+
+    &__status-toggle {
+        color: v.$white-accent;
+    }
+}
+
+.fa-regular {
+    cursor: pointer;
+}

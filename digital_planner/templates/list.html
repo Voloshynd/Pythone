@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if task_list %}
+
+<div class="list">
+    <h2 class="list__title">Tasks by Due Date</h2>
+    {% for task_date, tasks in grouped_tasks.items() %}
+    <h3 class="list__card-due__date">
+        {{ task_date.strftime("%B %d, %Y") }}
+    </h3>
+    {% for task in tasks %}
+
+    <div class="list_wrapper" id="list-{{ task.id }}">
+        <div class="list__card">
+            <div class="list__card-content">
+                <div class="list__card-status__icons">
+                    <a class="list__status-toggle"
+                       href="/toggle/{{ task.id }}/">
+
+                        {% if task.status == "To Do" %}
+                        <i class="fa-regular fa-circle"></i>
+
+                        {% elif task.status == "In Progress" %}
+                        <i class="fa-regular fa-clock"></i>
+
+                        {% elif task.status == "Completed" %}
+                        <i class="fa-regular fa-circle-check"></i>
+
+                        {% endif %}
+                    </a>
+                </div>
+
+                <div class="list__card-meta">
+                    {% if task.status == "Completed" %}
+                    <s class="list__card-title__cross-out">
+                        {{ task.title }}
+                    </s>
+                    {% else %}
+                    <h4 class="list__card-title">
+                        {{ task.title }}
+                    </h4>
+                    {% endif %}
+
+                    <div class="list__card-block">
+
+                        <div class="list__card-priority list__card-priority--high">
+                            {{ task.priority.upper() }}
+                        </div>
+
+                        <div class="list__card-category">
+                            {{ task.category }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+
+    {% endfor %}
+
+</div>
+
+{% else %}
+
+<div class="list__empty">
+    No tasks found. Add your first task to get started!
+</div>
+
+{% endif %}
+
+{% endblock %}

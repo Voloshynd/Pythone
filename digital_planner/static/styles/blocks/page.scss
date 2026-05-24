@@ -1,0 +1,26 @@
+@use '../utils/vars' as v;
+
+.page {
+    &__body {
+        height: 100vh;
+        margin: 0;
+        background: v.$background-color;
+        color: v.$white-accent;
+        font-family: "Inter", sans-serif;
+        font-optical-sizing: auto;
+        font-style: normal;
+
+        &-wrapper {
+             padding: 16px;
+             display: flex;
+             flex-direction: column;
+             gap: 30px;
+        }
+    }
+
+    &__main {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
