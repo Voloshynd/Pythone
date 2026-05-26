@@ -1,8 +1,8 @@
 stages:
   - test
 
-test:
+test_job:
+  stage: test
   image: python:3.12
   script:
-    - pip install flask sqlalchemy
-    - python -c "print('CI works')"
+    - echo "CI WORKS"
