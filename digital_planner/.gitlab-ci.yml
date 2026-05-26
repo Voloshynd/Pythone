@@ -1,8 +1,9 @@
 stages:
   - test
 
-test_job:
+test:
   stage: test
   image: python:3.12
+
   script:
-    - echo "CI WORKS"
+    - echo "CI works"
