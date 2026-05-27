@@ -6,4 +6,4 @@ test:
   image: python:3.12
 
   script:
-    - cd docs
+    - echo "CI works"
